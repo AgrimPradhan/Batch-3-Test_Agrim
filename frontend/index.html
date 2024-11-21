@@ -6,9 +6,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>LeetCode Leaderboard</title>
+    <style>
+        :root {
+            --bg-color: black;
+            --text-color: white;
+            --card-bg: #2d3748;
+            --card-border: #4a5568;
+        }
+
+        body.light {
+            --bg-color: white;
+            --text-color: black;
+            --card-bg: white;
+            --card-border: gray;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        table {
+            background-color: var(--card-bg);
+            border-color: var(--card-border);
+        }
+
+        select,
+        button {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--card-border);
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white p-5">
-    <!-- <canvas id="myChart" style="width:100%;max-width:600px"></canvas> -->
+<body class="dark p-5">
+    <div class="mode">
+        Theme:
+        <select
+            id="theme-switcher"
+            class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+        </select>
+    </div>
+
     <div class="container mx-auto my-10">
         <div class="">
             <!-- Leaderboard -->
@@ -88,7 +129,20 @@
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="index.js"></script>
+
+    <script src="./index.js"></script>
+    <script>
+        
+        const themeSwitcher = document.getElementById("theme-switcher");
+        themeSwitcher.addEventListener("change", function () {
+            if (this.value === "dark") {
+                document.body.classList.add("dark");
+                document.body.classList.remove("light");
+            } else {
+                document.body.classList.add("light");
+                document.body.classList.remove("dark");
+            }
+        });
+    </script>
 </body>
 </html>
